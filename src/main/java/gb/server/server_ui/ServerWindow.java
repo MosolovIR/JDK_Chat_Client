@@ -1,4 +1,4 @@
-package gb.server;
+package gb.server.server_ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerWindow extends JFrame {
+public class ServerWindow extends JFrame implements ServerGUI{
     private static final int POS_X = 500;
     private static final int POS_Y = 100;
     private static final int WIDTH = 400;
@@ -17,11 +17,7 @@ public class ServerWindow extends JFrame {
     public ServerWindow() {
         serverWindowSettings();
 
-        log.setEditable(false);
-        JScrollPane scrollLog = new JScrollPane(log);
-        add(scrollLog, BorderLayout.CENTER);
-
-        loadChatHistory();
+        this.getChatHistory();
         setVisible(true);
     }
 
@@ -31,6 +27,10 @@ public class ServerWindow extends JFrame {
         setResizable(false);
         setTitle("Chat Server");
         setAlwaysOnTop(true);
+
+        log.setEditable(false);
+        JScrollPane scrollLog = new JScrollPane(log);
+        add(scrollLog, BorderLayout.CENTER);
     }
 
     public void receiveMessage(String message) {

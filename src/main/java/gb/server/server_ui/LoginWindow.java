@@ -1,6 +1,8 @@
-package gb.server;
+package gb.server.server_ui;
 
-import gb.client.ClientGUI;
+import gb.client.client_control.ClientControl;
+import gb.client.client_control.ClientController;
+import gb.client.client_ui.ClientWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +16,16 @@ public class LoginWindow extends JFrame {
     private final JTextField tfLogin = new JTextField();
     private final JPasswordField tfPassword = new JPasswordField();
     private final JButton btnStart = new JButton("Start");
+    private ServerGUI serverGUI;
 
-    public LoginWindow(ServerWindow serverWindow) {
+    public LoginWindow(ServerGUI serverGUI) {
+        this.serverGUI = serverGUI;
+
+        loginWindowSettings();
+        setVisible(true);
+    }
+
+    private void loginWindowSettings() {
         setTitle("Login");
         setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -37,14 +47,14 @@ public class LoginWindow extends JFrame {
                 char[] password = tfPassword.getPassword();
 
                 if (!login.isEmpty() && password.length > 0) {
-                    new ClientGUI(serverWindow, login);
+                    ClientController clientControl = new ClientControl(serverGUI);
+                    clientControl.setLogin(login);
+                    ClientWindow clientWindow = new ClientWindow(clientControl, login);
                     dispose();
                 } else {
-                    System.out.println("Wrond login or password!");
+                    System.out.println("Wrong login or password!");
                 }
             }
         });
-
-        setVisible(true);
     }
 }
