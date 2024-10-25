@@ -1,4 +1,4 @@
-package gb.client.server;
+package gb.server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,11 +15,7 @@ public class ServerWindow extends JFrame {
     private List<String> chatHistory = new ArrayList<>();
 
     public ServerWindow() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setBounds(POS_X, POS_Y, WIDTH, HEIGHT);
-        setResizable(false);
-        setTitle("Chat Server");
-        setAlwaysOnTop(true);
+        serverWindowSettings();
 
         log.setEditable(false);
         JScrollPane scrollLog = new JScrollPane(log);
@@ -27,6 +23,14 @@ public class ServerWindow extends JFrame {
 
         loadChatHistory();
         setVisible(true);
+    }
+
+    private void serverWindowSettings() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setBounds(POS_X, POS_Y, WIDTH, HEIGHT);
+        setResizable(false);
+        setTitle("Chat Server");
+        setAlwaysOnTop(true);
     }
 
     public void receiveMessage(String message) {

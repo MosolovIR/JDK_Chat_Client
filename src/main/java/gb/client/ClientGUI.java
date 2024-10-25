@@ -1,6 +1,6 @@
 package gb.client;
 
-import gb.client.server.ServerWindow;
+import gb.server.ServerWindow;
 
 import javax.swing.*;
 import java.awt.*;

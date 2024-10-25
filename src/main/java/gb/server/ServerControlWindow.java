@@ -1,4 +1,4 @@
-package gb.client.server;
+package gb.server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class ServerControlWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 serverWindow = new ServerWindow();
                 serverWindow.serverStartMessage();
-                new LoginWindow(serverWindow);
+                new gb.server.LoginWindow(serverWindow);
 
                 btnStart.setEnabled(false);
                 btnStop.setEnabled(true);

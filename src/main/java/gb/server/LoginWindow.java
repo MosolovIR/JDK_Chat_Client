@@ -1,4 +1,4 @@
-package gb.client.server;
+package gb.server;
 
 import gb.client.ClientGUI;
 
